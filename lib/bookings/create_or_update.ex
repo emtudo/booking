@@ -1,8 +1,8 @@
 defmodule Booking.Bookings.CreateOrUpdate do
-  alias Booking.Users.User
-  alias Booking.Users.Agent, as: UserAgent
   alias Booking.Bookings.Agent, as: BookingAgent
   alias Booking.Bookings.Booking
+  alias Booking.Users.Agent, as: UserAgent
+  alias Booking.Users.User
 
   def call(id_usuario, %{
         data_completa: data_completa,
@@ -37,13 +37,12 @@ defmodule Booking.Bookings.CreateOrUpdate do
     {:ok, booking.id}
   end
 
+  defp save_Booking({:error, _reason} = error), do: error
+
   defp parse_date_time(date_time) do
     case Timex.parse(date_time, "{YYYY}-{0M}-{0D} {h24}:{m}") do
       {:ok, _date} = date -> date
       {:error, _reason} -> Timex.parse(date_time, "{YYYY}-{0M}-{0D} {h24}:{m}:{s}")
     end
   end
-
-
-  defp save_Booking({:error, _reason} = error), do: error
 end

@@ -22,6 +22,7 @@ defmodule Booking.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:ex_machina, "~> 2.7.0"},
       {:elixir_uuid, "~> 1.2"},
       {:timex, "~> 3.6"}
