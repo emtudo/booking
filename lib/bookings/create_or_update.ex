@@ -1,6 +1,6 @@
 defmodule Booking.Bookings.CreateOrUpdate do
   alias Booking.Bookings.Agent, as: BookingAgent
-  alias Booking.Bookings.Booking
+  alias Booking.Bookings.Booking, as: Agenda
   alias Booking.Users.Agent, as: UserAgent
   alias Booking.Users.User
 
@@ -21,8 +21,8 @@ defmodule Booking.Bookings.CreateOrUpdate do
     case parse_date_time(data_completa) do
       {:ok, date_time} ->
         user.id
-          |> Booking.build(date_time, cidade_origem, cidade_destino)
-          |> save_Booking()
+          |> Agenda.build(date_time, cidade_origem, cidade_destino)
+          |> save_booking()
 
       {:error, _reason} ->
         {:error, "Data inválida"}
@@ -31,13 +31,13 @@ defmodule Booking.Bookings.CreateOrUpdate do
 
   defp build({:error, _reason} = error, _data_completa, _cidade_origem, _cidade_destino), do: error
 
-  defp save_Booking({:ok, %Booking{} = booking}) do
+  defp save_booking({:ok, %Agenda{} = booking}) do
     BookingAgent.save(booking)
 
     {:ok, booking.id}
   end
 
-  defp save_Booking({:error, _reason} = error), do: error
+  defp save_booking({:error, _reason} = error), do: error
 
   defp parse_date_time(date_time) do
     case Timex.parse(date_time, "{YYYY}-{0M}-{0D} {h24}:{m}") do

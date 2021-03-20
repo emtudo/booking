@@ -1,6 +1,5 @@
 defmodule Booking.Bookings.CreateOrUpdateTest do
   use ExUnit.Case
-  alias Booking.Bookings.Agent, as: BookingAgent
   alias Booking.Bookings.CreateOrUpdate
   alias Booking.Users.Agent, as: UserAgent
   import Booking.Factory
