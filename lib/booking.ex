@@ -1,8 +1,8 @@
 defmodule Booking do
   alias Booking.Bookings.Agent, as: BookingAgent
+  alias Booking.Bookings.CreateOrUpdate, as: CreateOrUpdateBooking
   alias Booking.Users.Agent, as: UserAgent
   alias Booking.Users.CreateOrUpdate, as: CreateOrUpdateUser
-  alias Booking.Bookings.CreateOrUpdate, as: CreateOrUpdateBooking
 
   def start_agents() do
     UserAgent.start_link(%{})
