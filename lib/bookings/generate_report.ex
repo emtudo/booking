@@ -11,12 +11,15 @@ defmodule Booking.Bookings.GenerateReport do
     {:ok, "Report generated successfully"}
   end
 
-  defp booking_to_string({_id, %Agenda{
-    id_usuario: id_usuario,
-    data_completa: data_completa,
-    cidade_origem: cidade_origem,
-    cidade_destino: cidade_destino
-  }}) do
+  defp booking_to_string(
+         {_id,
+          %Agenda{
+            id_usuario: id_usuario,
+            data_completa: data_completa,
+            cidade_origem: cidade_origem,
+            cidade_destino: cidade_destino
+          }}
+       ) do
     "#{id_usuario},#{cidade_origem},#{cidade_destino},#{data_completa}\n"
   end
 end
